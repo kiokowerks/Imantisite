@@ -1,0 +1,14 @@
+AuthType Basic
+AuthName "Admin Area"
+AuthUserFile /home/project/.htpasswd
+Require valid-user
+
+# Only protect the admin route
+<If "%{REQUEST_URI} =~ m#^/admin/#">
+  Require valid-user
+</If>
+
+# Allow access to all other routes
+<Else>
+  Require all granted
+</Else>
